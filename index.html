@@ -1,74 +1,315 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil - Haekal Rizki Putra</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f6f9;
-            color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-        }
-        .card {
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            max-width: 450px;
-            width: 100%;
-            text-align: center;
-        }
-        h1 {
-            color: #1a73e8;
-            margin-bottom: 5px;
-        }
-        h3 {
-            color: #5f6368;
-            margin-top: 0;
-            font-weight: normal;
-        }
-        .info-box {
-            background-color: #e8f0fe;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 20px;
-            text-align: left;
-        }
-        .info-box p {
-            margin: 8px 0;
-            font-size: 15px;
-        }
-        .footer {
-            margin-top: 20px;
-            font-size: 12px;
-            color: #888;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Haekal Rizki Putra OS - Portofolio TKJ</title>
+  <style>
+    :root {
+      --bg-color: #0d1117;
+      --card-bg: #161b22;
+      --accent-color: #58a6ff;
+      --text-color: #c9d1d9;
+      --header-color: #21262d;
+      --green: #3fb950;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: #050811 url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      height: 100vh;
+      overflow: hidden;
+      color: var(--text-color);
+    }
+
+    /* Desktop Area */
+    .desktop {
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, 100px);
+      grid-gap: 20px;
+      height: calc(100vh - 45px);
+    }
+
+    .shortcut {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      color: white;
+      text-shadow: 1px 1px 3px black;
+      font-size: 13px;
+      text-align: center;
+      padding: 10px;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+
+    .shortcut:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .shortcut-icon {
+      font-size: 36px;
+      margin-bottom: 5px;
+    }
+
+    /* Window Style */
+    .window {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      max-width: 650px;
+      background: var(--card-bg);
+      border: 1px solid #30363d;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+      overflow: hidden;
+    }
+
+    .window-header {
+      background: var(--header-color);
+      padding: 10px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #30363d;
+    }
+
+    .window-title {
+      font-weight: bold;
+      font-size: 14px;
+      color: var(--accent-color);
+    }
+
+    .window-controls span {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-left: 5px;
+      cursor: pointer;
+    }
+
+    .close { background: #ff5f56; }
+    .minimize { background: #ffbd2e; }
+    .maximize { background: #27c93f; }
+
+    .window-body {
+      padding: 20px;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+
+    /* Profile / Content Styles */
+    .profile-card {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      border-bottom: 1px solid #30363d;
+      padding-bottom: 15px;
+      margin-bottom: 15px;
+    }
+
+    .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--accent-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      font-weight: bold;
+      color: #0d1117;
+    }
+
+    .user-info h2 {
+      color: white;
+      font-size: 20px;
+    }
+
+    .user-info p {
+      color: #8b949e;
+      font-size: 14px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #238636;
+      color: white;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 12px;
+      margin-top: 5px;
+    }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .info-box {
+      background: #0d1117;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #21262d;
+    }
+
+    .info-box label {
+      font-size: 11px;
+      color: #8b949e;
+      display: block;
+    }
+
+    .info-box span {
+      font-size: 14px;
+      font-weight: bold;
+      color: white;
+    }
+
+    /* Terminal Box */
+    .terminal {
+      background: #000;
+      font-family: 'Courier New', Courier, monospace;
+      padding: 12px;
+      border-radius: 6px;
+      color: var(--green);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    /* Taskbar */
+    .taskbar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 45px;
+      background: rgba(22, 27, 34, 0.9);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid #30363d;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 15px;
+    }
+
+    .start-btn {
+      background: var(--accent-color);
+      color: #0d1117;
+      border: none;
+      padding: 6px 15px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .clock {
+      font-size: 13px;
+      color: white;
+    }
+  </style>
 </head>
 <body>
 
-    <div class="card">
-        <h1>Haekal Rizki Putra</h1>
-        <h3>Siswa SMK Taruna Bhakti</h3>
-
-        <div class="info-box">
-            <p><strong>Nama:</strong> Haekal Rizki Putra</p>
-            <p><strong>Kelas:</strong> XI TKJ 4</p>
-            <p><strong>Jurusan:</strong> Teknik Komputer dan Jaringan</p>
-            <p><strong>Sekolah:</strong> SMK Taruna Bhakti</p>
-            <p><strong>Project:</strong> Tugas Custom Domain & Deployment Website</p>
-        </div>
-
-        <div class="footer">
-            &copy; 2026 Haekal Rizki Putra. All Rights Reserved.
-        </div>
+  <!-- Desktop Icons -->
+  <div class="desktop">
+    <div class="shortcut">
+      <div class="shortcut-icon">👤</div>
+      <div>Profil.exe</div>
     </div>
+    <div class="shortcut">
+      <div class="shortcut-icon">🌐</div>
+      <div>Tugas Domain</div>
+    </div>
+    <div class="shortcut">
+      <div class="shortcut-icon">💻</div>
+      <div>Terminal</div>
+    </div>
+  </div>
 
+  <!-- Window OS -->
+  <div class="window">
+    <div class="window-header">
+      <div class="window-title">C:\Users\HaekalRizkiPutra\Biodata.exe</div>
+      <div class="window-controls">
+        <span class="minimize"></span>
+        <span class="maximize"></span>
+        <span class="close"></span>
+      </div>
+    </div>
+    
+    <div class="window-body">
+      <!-- Profile Header -->
+      <div class="profile-card">
+        <div class="avatar">HRP</div>
+        <div class="user-info">
+          <h2>Haekal Rizki Putra</h2>
+          <p>Siswa Teknik Komputer & Jaringan (TKJ)</p>
+          <span class="badge">SMK Taruna Bhakti Depok</span>
+        </div>
+      </div>
+
+      <!-- Detail Data -->
+      <div class="details-grid">
+        <div class="info-box">
+          <label>NAMA LENGKAP</label>
+          <span>Haekal Rizki Putra</span>
+        </div>
+        <div class="info-box">
+          <label>UMUR</label>
+          <span>18 Tahun</span>
+        </div>
+        <div class="info-box">
+          <label>KELAS</label>
+          <span>Kelas 11</span>
+        </div>
+        <div class="info-box">
+          <label>JURUSAN</label>
+          <span>TKJ (Teknik Komputer Jaringan)</span>
+        </div>
+        <div class="info-box" style="grid-column: span 2;">
+          <label>SEKOLAH</label>
+          <span>SMK Taruna Bhakti Depok</span>
+        </div>
+      </div>
+
+      <!-- Status Tugas Domain (Terminal Theme) -->
+      <div class="terminal">
+        <div>[SYSTEM] Menjalankan Pemeriksaan Domain...</div>
+        <div>> Status Tugas : Website Domain</div>
+        <div>> Target       : Website Portofolio Personal TKJ</div>
+        <div>> Status       : <span style="color: #3fb950;">ONLINE / CONNECTED</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Taskbar Bottom -->
+  <div class="taskbar">
+    <button class="start-btn">Start</button>
+    <div class="clock" id="clock">00:00:00</div>
+  </div>
+
+  <script>
+    // Jam Realtime pada Taskbar
+    function updateClock() {
+      const now = new Date();
+      const timeString = now.toLocaleTimeString('id-ID');
+      document.getElementById('clock').textContent = timeString;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
 </body>
 </html>
